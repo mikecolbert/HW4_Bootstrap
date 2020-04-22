@@ -1,0 +1,39 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h3>{{ legend }}</h3>
+{% if friends %}
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-light">
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for row in friends %}
+        <tr>
+            <td> {{ row.first_name }}</td>
+            <td> {{ row.last_name }}</td>
+
+            <td>
+                <form action="{{ url_for('get_friend', friend_id=row.friendid) }}" method="POST">
+                   <button type="submit" class="btn btn-outline-dark">Details</button>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+
+{% endif %}
+{% endblock %}

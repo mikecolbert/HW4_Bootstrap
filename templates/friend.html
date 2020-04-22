@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+   <h3>{{ legend }}</h3>
+
+   {% if form %}
+
+   <form method="POST" action=""> 
+    {{ form.csrf_token }}
+
+    <div class="form-group">
+        {{ form.friendid.label }} 
+        {{ form.friendid.data }}
+      </div>
+  
+    <div class="form-group">
+      {{ form.first_name.label }}
+      {{ form.first_name.data }}
+    </div>
+
+    <div class="form-group">
+      {{ form.last_name.label }} 
+      {{ form.last_name.data }}
+    </div>
+
+    <button type="submit" formaction="{{url_for('update_friend', friend_id=form.friendid.data) }}"  class="btn btn-outline-dark">Update</button>
+    <button type="submit"  formaction="{{url_for('delete_friend', friend_id=form.friendid.data) }}" class="btn btn-outline-danger">Delete</button>
+
+  </form>
+   {% endif %}
+</div>
+{% endblock %}
